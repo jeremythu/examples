@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 2.8.7)
+project (caffe_forward_net)
+
+option(CPU_ONLY "build caffe without GPU support" OFF)
+
+include_directories (
+    include-path
+)
+
+set (SRC_LIST
+    ***.cpp
+)
+
+set (EXE_LIST
+    ***.cpp
+)
+
+link_directories(
+    link-path
+)
+
+add_executable(Caffe_forward_net ${SRC_LIST} ${EXE_LIST})
+
+find_package(OpenCV REQUIRED)
+
+target_link_libraries (Caffe_forward_net ${OpenCV_LIBS}
+        caffe cudart glog protobuf boost_system
+)
